@@ -1,0 +1,60 @@
+\input{xcinput.tex}\documentclass[a4paper,10pt]{article}
+\usepackage{ amssymb }
+\usepackage{textcomp}
+\renewcommand{\baselinestretch}{1.5} % 5 linespace
+%\usepackage{MinionPro} %{\MiQ\cH28}{\MfQ\cH220}{\MiQ\cH116}{\MbQ\cH143}{\MbQ\cH61}{\MbQ\cH224}{\MbQ\cH237}{\McQ\cH76}{\MbQ\cH100}{\MbQ\cH98}{\MaQ\cH229}{\MaQ\cH229}{\McQ\cH241}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx,psfrag,booktabs}
+\geometry{left=1in,right=1in,top=1in,bottom=1in}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad} %{\MaQ\cH94}{\MbQ\cH90}section {\McQ\cH41}{\McQ\cH85}{\MbQ\cH237}{\MeQ\cH165}{\MdQ\cH168}
+\usepackage{mathrsfs} %{\MaQ\cH139}{\MaQ\cH112}{\McQ\cH73}{\McQ\cH241}{\MaQ\cH229}{\MgQ\cH130}{\MeQ\cH165}{\MdQ\cH168}
+\usepackage{indentfirst}%{\McQ\cH199}{\McQ\cH229}{\McQ\cH11}{\MaQ\cH115}{\MbQ\cH143}{\MbQ\cH237}{\MbQ\cH78}{\MaQ\cH73}
+\usepackage[square,numbers]{natbib}
+\usepackage{xeCJK} %{\MaQ\cH50}{\MbQ\cH100}{\MaQ\cH229}{\McQ\cH241}{\McQ\cH113}{\MaQ\cH236}
+\setCJKmainfont{SimSun} %{\McQ\cH227}{\McQ\cH113}{\MaQ\cH53}{\MaQ\cH50}{\MbQ\cH100}{\MaQ\cH229}{\McQ\cH241}
+\bibliographystyle{unsrtnat}
+
+\title{Home Work 1\\ Machine Learning Foundations}
+\author{R04323050 \\{\McQ\cH37}\z{\MbQ\cH200}\z{\MmQ\cH238}\z{\McQ\cH250}   \quad {\McQ\cH207}\z{\MdQ\cH43}\z{\MjQ\cH254}}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{Q1.png}
+\end{figure}
+
+\section{}
+Active Learning {\MaQ\cH50}\z{\MbQ\cH237}\z{\MaQ\cH51}\z{\MaQ\cH141}\z{\MbQ\cH117}\z{\MbQ\cH78}\z{\MiQ\cH233}\z{\MbQ\cH156}\z{\MaQ\cH194}``{\MaQ\cH51}\z{\MaQ\cH141}''{\MaQ\cH160}\z{\MeQ\cH169}\z{\MfQ\cH118}\z{\MaQ\cH85}\z{\MbQ\cH224}\z{\McQ\cH54}\z{\MbQ\cH70}\z{\McQ\cH219}\z{\MbQ\cH176}\z{\MbQ\cH237}label, {\McQ\cH146}\z{\MbQ\cH101}\z{\McQ\cH33}\z{\MgQ\cH90}\z{\MaQ\cH44}\z{\McQ\cH68}\z{\MaQ\cH154}\z{\MhQ\cH97}\z{\MbQ\cH247}\z{\MbQ\cH31}\z{\MaQ\cH231}\z{\McQ\cH51}\z{\MbQ\cH127}\z{\MaQ\cH60}\z{\MbQ\cH243}\z{\MaQ\cH78}, {\MdQ\cH201}\z{\MbQ\cH127}\z{\MaQ\cH253}\z{\McQ\cH182}\z{\MaQ\cH125}\z{\MbQ\cH117}\z{\MbQ\cH127}\z{\McQ\cH37}\z{\McQ\cH172}\z{\MbQ\cH153}\z{\MhQ\cH194}\z{\MbQ\cH237}, {\MaQ\cH250}\z{\MbQ\cH107}unlabeled {\MbQ\cH237}\z{\McQ\cH146}\z{\MbQ\cH101}\z{\McQ\cH74}\z{\McQ\cH98}\z{\MaQ\cH166}\z{\MbQ\cH41}\z{\MbQ\cH153}\z{\MhQ\cH194}\z{\MaQ\cH248}\z{\MbQ\cH125}\z{\MgQ\cH167}\z{\McQ\cH145}\z{\MeQ\cH206}\z{\MaQ\cH215}\z{\MbQ\cH237}\z{\MbQ\cH65}\z{\MbQ\cH133}\z{\MbQ\cH67}\z{\MbQ\cH117}\z{\MaQ\cH65}\z{\MaQ\cH137}, {\MbQ\cH164}\z{\MbQ\cH118}\z{\MaQ\cH248}\z{\MjQ\cH95}\z{\MbQ\cH224}\z{\MaQ\cH51}\z{\MaQ\cH141}\z{\MbQ\cH31}\z{\MaQ\cH231}\z{\McQ\cH51}{\MaQ\cH1}\zZ {\MbQ\cH124}\z{\MbQ\cH18}\z{\McQ\cH99}\z{\MbQ\cH237}\z{\MbQ\cH64}\z{\MbQ\cH224}\z{\MbQ\cH117}\z{\MaQ\cH202}\z{\MbQ\cH107}\z{\MbQ\cH222}\z{\MbQ\cH211}\z{\McQ\cH68}\z{\McQ\cH187}\z{\MaQ\cH231}\z{\MaQ\cH245}\z{\McQ\cH240}, {\MdQ\cH100}\z{\MbQ\cH117}\z{\MiQ\cH159}\z{\MbQ\cH235}\z{\McQ\cH148}\z{\MbQ\cH67}\z{\MbQ\cH117}\z{\MiQ\cH147}\z{\MbQ\cH211}\z{\MbQ\cH237}\z{\MaQ\cH175}\z{\MbQ\cH65}, {\McQ\cH183}\z{\McQ\cH219}\z{\McQ\cH98}\z{\MaQ\cH248}\z{\MaQ\cH147}\z{\MaQ\cH175}\z{\MbQ\cH211}\z{\MaQ\cH74}\z{\MgQ\cH47}\z{\McQ\cH7}\z{\MbQ\cH212}\z{\MgQ\cH121}\z{\MbQ\cH237}\z{\MbQ\cH237}\z{\MbQ\cH106}\z{\MbQ\cH31}\z{\MjQ\cH156}\z{\McQ\cH33}\z{\MaQ\cH202}\z{\McQ\cH248}\z{\McQ\cH150}{\MaQ\cH1}\zZ {\MaQ\cH196}\z{\MbQ\cH164}\z{\MbQ\cH241}\z{\MbQ\cH153}\z{\MaQ\cH44}\z{\MbQ\cH66}\z{\MaQ\cH98}\z{\MbQ\cH59}\z{\McQ\cH98}\z{\MfQ\cH118}\z{\MaQ\cH124}\z{\MgQ\cH47}\z{\McQ\cH7}\z{\MdQ\cH131}\z{\MbQ\cH98}\z{\MbQ\cH36}\z{\MbQ\cH31}$f:\mathcal{X} \rightarrow \mathcal{Y}$ {\MbQ\cH117}\z{\MaQ\cH170}\z{\MaQ\cH74}\z{\MbQ\cH192}\z{\MgQ\cH85}\z{\MaQ\cH203}\z{\MaQ\cH125}\z{\McQ\cH233}\z{\MaQ\cH124}\z{\MkQ\cH168}\z{\MaQ\cH60}\z{\MaQ\cH147}\z{\MaQ\cH175}\z{\MbQ\cH211}\z{\MbQ\cH237}\z{\MaQ\cH175}\z{\MbQ\cH65}\z{\MbQ\cH106}\z{\MbQ\cH31}\z{\MbQ\cH117}\z{\MaQ\cH170}\z{\MaQ\cH74}bind to particular target({\McQ\cH174}\z{\MaQ\cH131}\z{\MiQ\cH147}\z{\MbQ\cH211}\z{\MbQ\cH65}\z{\MbQ\cH94}), {\MbQ\cH70}\z{\MaQ\cH74}labeled $Y_{n}${\MaQ\cH255}\z{\MaQ\cH170}\z{\MaQ\cH74}\z{\MaQ\cH125}\z{\MbQ\cH209}active(binds to target ) \& inactive, {\McQ\cH55}\z{\MaQ\cH119}\z{\MeQ\cH133}unlabeled $Y_{n}${\MaQ\cH255}\z{\MbQ\cH117}\z{\MaQ\cH174}\z{\McQ\cH7}description of chemical compounds{\MaQ\cH1}\zZ {\MjQ\cH78}\z{\McQ\cH172}Active Learning {\MbQ\cH66}\z{\MaQ\cH98}\z{\MaQ\cH170}\z{\MaQ\cH74}\z{\MiQ\cH233}\z{\MbQ\cH156}\z{\MaQ\cH194}\z{\MjQ\cH78}\z{\McQ\cH172}\z{\MaQ\cH231}\z{\McQ\cH51}\z{\MaQ\cH86}\z{\MaQ\cH51}\z{\MaQ\cH141}\z{\McQ\cH178}\z{\MfQ\cH207}\z{\MaQ\cH170}\z{\McQ\cH63}\z{\MbQ\cH237}\z{\MaQ\cH147}\z{\MaQ\cH231}\z{\MaQ\cH245}\z{\McQ\cH240}, {\MaQ\cH74}\z{\MbQ\cH90}\z{\McQ\cH137}\z{\MaQ\cH147}\z{\MaQ\cH175}\z{\MbQ\cH211}\z{\MbQ\cH237}\z{\MtQ\cH170}\z{\McQ\cH33}\z{\MbQ\cH106}\z{\MbQ\cH31}({\MbQ\cH67}\z{\McQ\cH124}\z{\McQ\cH186}\z{\McQ\cH7}\z{\McQ\cH233}), {\MbQ\cH124}\z{\MbQ\cH40}\z{\MbQ\cH41}\z{\MaQ\cH131}\z{\MaQ\cH170}\z{\McQ\cH63}\z{\McQ\cH174}\z{\MaQ\cH131}\z{\MbQ\cH212}\z{\MgQ\cH121}\z{\McQ\cH219}\z{\MbQ\cH176}\z{\MbQ\cH237}\z{\MbQ\cH104}\z{\MaQ\cH147}\z{\MaQ\cH175}\z{\MbQ\cH211}(obtaining new labels){\MaQ\cH1}\zZ
+
+
+
+
+
+
+
+
+
+\section{}
+Steps {\MbQ\cH237}\z{\MbQ\cH19}\z{\MaQ\cH204}\z{\MdQ\cH77}\z{\MbQ\cH81}\z{\McQ\cH161}\Z40\Z{\MbQ\cH10}\z{\MaQ\cH172}, {\MaQ\cH47}histogram {\McQ\cH161}\z{\MaQ\cH78}\z{\MbQ\cH107}\z{\MbQ\cH18}\z{\MfQ\cH71}\z{\MaQ\cH125}\z{\MdQ\cH48}{\MaQ\cH1}\zZ {\MaQ\cH224}\z{\MaQ\cH45}\z{\MaQ\cH199}:
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{Q8.png}
+\end{figure}
+
+\maketitle
+\section{}
+In the slides, we know $T \leq \frac{R^{2}}{\rho^{2}}$, where $R^{2}=\underset{n}{max} \left \| \bf{x}_n \right \|^{2} $ and $\rho=\underset{n}{min} \, y_{n}\frac{\bf{w^{T}_{f}}}{\left \| \bf{w}_{f} \right \|}\bf{x}_{n}$.\\
+{\MbQ\cH226}\z{\MaQ\cH44}\z{\MbQ\cH31}\z{\MaQ\cH170}\z{\MbQ\cH245}\z{\MaQ\cH124},$T${\MbQ\cH237}\z{\MaQ\cH125}\z{\MaQ\cH228}\z{\MaQ\cH125}\z{\MgQ\cH130}\z{\McQ\cH183}\z{\MbQ\cH127}$\left \| \bf{x}_n \right \|${\MbQ\cH237}\z{\MbQ\cH19}\z{\MbQ\cH106}\z{\McQ\cH225}, {\MaQ\cH196}\z{\MbQ\cH164}\z{\MaQ\cH248}\z{\MbQ\cH70}\z{\MbQ\cH127}\z{\MbQ\cH237}$\bf{x}_n$ scale down linearly {\MaQ\cH250}$T${\MbQ\cH237}\z{\MaQ\cH44}\z{\MbQ\cH228}\z{\MaQ\cH49}\z{\MbQ\cH204}\z{\MfQ\cH9}\z{\McQ\cH224}, {\MbQ\cH204}\z{\MbQ\cH182}\z{\MiQ\cH233}\z{\MbQ\cH198}\z{\McQ\cH18}\z{\MbQ\cH182}overall {\McQ\cH137}\z{\MbQ\cH48}{\MaQ\cH1}\zZ
+
+
+\medskip
+
+
+
+\end{document}

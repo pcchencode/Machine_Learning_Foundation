@@ -1,0 +1,154 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ amssymb }
+\usepackage{ stmaryrd }
+\usepackage{ dsfont }
+\usepackage{amsmath}
+\usepackage{mathtools} 
+\usepackage{textcomp}
+\renewcommand{\baselinestretch}{1.5} % 5 linespace
+%\usepackage{MinionPro} %聰敏葛格愛用的英文數字字體
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx,psfrag,booktabs}
+\geometry{left=1in,right=1in,top=1in,bottom=1in}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad} %修改section 編號的封包
+\usepackage{mathrsfs} %加入花體字母封包
+%\usepackage{indentfirst}%開頭空兩格的指令
+\usepackage[square,numbers]{natbib}
+\usepackage{xeCJK} %中文字體設定
+\setCJKmainfont{SimSun} %預設之中文字體
+\bibliographystyle{unsrtnat}
+\makeatletter
+\def\@xfootnote[#1]{%
+  \protected@xdef\@thefnmark{#1}%
+  \@footnotemark\@footnotetext}
+\makeatother
+
+\title{Home Work 1\\ Machine Learning Foundations}
+\author{R04323050 \\經濟碩三   \quad 陳伯駒}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{Q1.png}
+\end{figure}
+
+\section{}
+Active Learning中的主動是指讓機器“主動”去尋找使用者所需求的label，資料結構上與半監督式學習有些相似，只有少部分是有經過標籤的，對於unlabeled的資料若要取得標籤將會浩費巨大的成本或是人力，此時將適用主動式學習。最常見的應用是在於生物與醫學實驗，像是蛋白質或是藥物的合成，都需要將化合物以某種特殊的的方式鍵結在一起。因此目標上我們想要找出某種函數形式$f:\mathcal{X} \rightarrow \mathcal{Y}$ 是可以清楚地分類出哪些化合物的合成方式是可以bind to particular target(達到藥物成效)，所以labeled $Y_{n}$就可以分為active(binds to target ) \& inactive，而其它unlabeled $Y_{n}$就是各種description of chemical compounds。透過Active Learning我們可以讓機器透過學習來主動選擇可能的化學實驗，以改變化合物的鏈結方式(或調配種類)，最後得到可能達到特殊需求的新化合物(obtaining new labels)。
+
+\section{}
+$f(\bf{x}_{N+\ell})=1$, for $\ell=1,2,...,L$\\
+$g(\bf{x}_{N+\ell})=$  
+$\begin{cases}
+1 \text{ if $N+\ell$ is odd, $\ell=1,2,...,L$} \\
+-1 \text{, otherwise}
+\end{cases}$\\
+$\therefore \displaystyle \sum_{\ell=1}^{L} \llbracket g({\bf{x}}_{N+\ell}) \neq f({\bf{x}}_{N+\ell})\rrbracket$即$N+1$至$N+L$之間的偶數個數。\\
+Now \underline{\bf{claim:}}  $\displaystyle \sum_{\ell=1}^{L} \llbracket g({\bf{x}}_{N+\ell}) \neq f({\bf{x}}_{N+\ell})\rrbracket= \left \lfloor \frac{N+L}{2} \right \rfloor-\left \lfloor \frac{N}{2} \right \rfloor$\\
+First we construct the proposition $\bf{P_{n}}$: the \# of even number between $1 \sim n$ is  $\left \lfloor \frac{n}{2} \right \rfloor$, where $n \geq 1$. \\
+\newline
+\underline{Case 1:} Let $n$ be even number\\
+$P_{2}$: \# of even number between $1 \sim 2$ is $1=\left \lfloor  \frac{2}{2}\right \rfloor$, holds.\\
+$P_{4}$: \# of even number between $1 \sim 4$ is $2=\left \lfloor  \frac{4}{2}\right \rfloor$, holds.\\
+Suppose $P_{n}$ holds, meaning \# of even number between $1 \sim n$ is $\left \lfloor  \frac{n}{2}\right \rfloor$\\
+Consider $P_{n+2}$, then \# of even number between $1 \sim n+2$ is $\left \lfloor \frac{n}{2} \right \rfloor+1 = \footnote[*]{
+Let $\left \lfloor  x \right \rfloor=m$, $\left \lfloor x+1 \right \rfloor=M$.\\
+ By the equivalence of floor function:\\
+$\left \lfloor x \right \rfloor = m \Leftrightarrow m \leq x < m+1$ \\
+$\left \lfloor x+1 \right \rfloor = M \Leftrightarrow M \leq x+1 < M+1 \Leftrightarrow M-1 \leq x < M$ \\
+$\therefore M=m+1 \Leftrightarrow \left \lfloor x+1 \right \rfloor = \left \lfloor x \right \rfloor+1$
+}\left \lfloor \frac{n}{2}+1 \right \rfloor = \left \lfloor \frac{n+2}{2} \right \rfloor$, holds.\\
+Hence by mathematical induction, we know $P_{n}$ holds for all $n$ are even number.\\
+\newline
+\underline{Case 2:} Let $n$ be odd number\\
+$P_{1}$: \# of even number between $1 \sim 1$ is $1=\left \lfloor  \frac{1}{2}\right \rfloor$, holds.\\
+$P_{3}$: \# of even number between $1 \sim 3$ is $2=\left \lfloor  \frac{3}{2}\right \rfloor$, holds.\\
+Suppose $P_{n}$ holds, meaning \# of even number between $1 \sim n$ is $\left \lfloor  \frac{n}{2}\right \rfloor$\\
+Consider $P_{n+2}$, similarly, $P_{n+2}$ still holds.\\
+Hence by mathematical induction, we know $P_{n}$ holds for all $n$ are odd number. \\
+By case 1 \& 2, we know $P_{n}$ holds $\forall n$. Next, we will prove the \underline{\bf{claim}} by this proposition.\\
+\newline
+$\begin{cases}
+A: N+L \text{為偶數，} N+1 \text{為奇數} \\
+B: N+L \text{為奇數，} N+1 \text{為奇數}
+\end{cases}$ : \# of even number = $\left \lfloor \frac{N+L}{2} \right \rfloor-\left \lfloor \frac{N+1}{2} \right \rfloor$\\
+$\begin{cases}
+C: N+L \text{為偶數，} N+1 \text{為\underline{偶數}} \\
+D: N+L \text{為奇數，} N+1 \text{為\underline{偶數}}
+\end{cases}$ : \# of even number = $\left \lfloor \frac{N+L}{2} \right \rfloor-\left \lfloor \frac{N+1}{2} \right \rfloor+\underline{1}$ ($\because$多扣$N+1$這個偶數)\\
+note that when:\\
+甲. $N+1$ 為奇數時：$\left \lfloor \frac{N+L}{2} \right \rfloor=\left \lfloor \frac{N}{2} \right \rfloor$\\
+乙. $N+1$ 為偶數時：$N-1$亦為偶數($\therefore \left \lfloor \frac{N-1}{2} \right \rfloor=\left \lfloor \frac{N}{2} \right \rfloor$)，另外rewrite\\ $1-\left \lfloor \frac{N+1}{2} \right \rfloor= -(\left \lfloor \frac{N+L}{2} \right \rfloor+(-1))= - \left \lfloor \frac{N-1}{2} \right \rfloor$\\
+By 甲、乙 \& Ａ、Ｂ、Ｃ、Ｄ：\\
+we can rewrite the \# of even number between $N+1 \sim N+L$ is : $\left \lfloor \frac{N+L}{2} \right \rfloor-\left \lfloor \frac{N}{2} \right \rfloor$, Q.E.D.\\
+By definition, $E_{OTS}(g,f)=\frac{1}{L}(\left \lfloor \frac{N+L}{2} \right \rfloor-\left \lfloor \frac{N}{2} \right \rfloor)$.
+
+\section{}
+We know $f({\bf{x}}_{n})= y_{n}$, $ \forall ({\bf{x}_{n}}, y_{n}) \in \mathcal{D}$, where $\mathcal{D} = \left \{ ({\bf{x}_{n}},y_{n}) \right \}^{N}_{n=1}$。
+對於training example中的資料，$f$組合已經固定，而 $\mathcal{X}= \left \{ {\bf{x}_{1}}, {\bf{x}_{2}},..., {\bf{x}_{N}}, {\bf{x}_{N+1}},..., {\bf{x}_{N+L}}  \right \}$，因此對剩下的${\bf{x}_{N+1}} \sim {\bf{x}_{N+L}}$共有$2^{L}$種取法(L個、每個有$\pm 1$兩種)。
+
+\section{}
+Let the determisitc algorithm $\mathcal{A}$ defined by question, then\\
+$$
+\begin{align} 
+\mathds{E}_{f} \left \{  E_{OTS}  ( \mathcal{A}(\mathcal{D}), f )  \right \} &= \frac{1}{2^{L}} \sum_{i=1}^{2^{L}} \frac{1}{L} \sum_{\ell=1}^{L} \llbracket g({\bf{x}}_{N+\ell}) \neq f({\bf{x}}_{N+\ell})\rrbracket\\ 
+&= \frac{1}{2^{L}} \frac{1}{L}   \sum_{\ell=1}^{L} \sum_{i=1}^{2^{L}}\llbracket g({\bf{x}}_{N+\ell}) \neq f({\bf{x}}_{N+\ell})\rrbracket  \quad \text{(since $f$ are equally likely in prob.)}\\
+&= \frac{1}{2^{L}} \frac{1}{L}  \sum_{\ell=1}^{L}  (\frac{1}{2} \times \sum_{i=1}^{2^{L}} 1)  \\
+&= \frac{1}{2^{L}} \frac{1}{L}  \sum_{\ell=1}^{L} 2^{L-1} = \frac{1}{2}
+\end{align}
+\newline
+$\therefore$ 與所選演算法無關，故等式成立。
+
+
+
+\section {}
+若要選5次、所挑中的1都是綠色的，則一定要選中骰子Ａ或Ｄ，因此機率為$(\frac{2}{4})^{5}=\frac{1}{32}$。
+
+\section{}
+先check使數字全為綠色的骰子組合：\\
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+數字 & 骰子組合  \\ \hline
+1 & Ａ或Ｄ\\
+2 & Ｂ或Ｄ\\
+3 & Ａ或Ｄ\\
+4 & Ｂ或Ｃ\\
+5 & Ａ或Ｃ\\
+6 & Ｂ或Ｃ
+\end{tabular}
+\end{table}
+\newline
+因此選5次中，有4種骰子的組合可使"some number"全為綠：｛（Ａ或Ｄ），（Ｂ或Ｃ），（Ｂ或Ｄ），（Ａ或Ｃ）｝，共有$2^{5}\times4$種可能性。\\
+但以上四種組合分別會重複計算｛(DDDDD), (AAAAA), (BBBBB), (CCCCC)｝這四種組合，因此需扣除。\\
+$\therefore$ 共有 $2^{5}\times4-4$種可能性，且$N(\mathcal{S})=4^{5}$\\
+$\therefore$ $P=\frac{2^{5}\times4-4}{4^{5}}=\frac{31}{256}$
+
+
+\section{}
+Steps的平均值接近40左右，且histogram近似於常態分佈。如下圖：
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{Q8.png}
+\end{figure}
+
+
+
+
+
+
+\section{}
+In the slides, we know $T \leq \frac{R^{2}}{\rho^{2}}$, where $R^{2}=\displaystyle \max_{n} \left \| \bf{x}_n \right \|^{2} $ and $\displaystyle \rho=\min_{n} \, y_{n}\frac{\bf{w^{T}_{f}}}{\left \| \bf{w}_{f} \right \|}\bf{x}_{n}$.\\
+由上式可看出，$T$的分子分母都有$\left \| \bf{x}_n \right \|$的平方項，因此將所有的$\bf{x}_n$ scale down linearly對$T$的上界並無影響，無法讓演算法overall變快。
+
+
+\medskip
+
+
+
+\end{document}
