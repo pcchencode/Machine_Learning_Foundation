@@ -1,0 +1,203 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ amssymb }
+\usepackage{ stmaryrd }
+\usepackage{ dsfont }
+\usepackage{amsmath}
+\usepackage{mathtools} 
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}} %表格內強制換行好用
+\usepackage{textcomp}
+\renewcommand{\baselinestretch}{1.5} % 5 linespace
+%\usepackage{MinionPro} %聰敏葛格愛用的英文數字字體
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx,psfrag,booktabs}
+\geometry{left=1in,right=1in,top=1in,bottom=1in}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad} %修改section 編號的封包
+\usepackage{mathrsfs} %加入花體字母封包
+%\usepackage{indentfirst}%開頭空兩格的指令
+\usepackage[square,numbers]{natbib}
+\usepackage{xeCJK} %中文字體設定
+\setCJKmainfont{SimSun} %預設之中文字體
+\bibliographystyle{unsrtnat}
+\makeatletter
+\def\@xfootnote[#1]{%
+  \protected@xdef\@thefnmark{#1}%
+  \@footnotemark\@footnotetext}
+\makeatother
+
+\title{Home Work 2\\ Machine Learning Foundations}
+\author{R04323050 \\經濟碩三   \quad 陳伯駒}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{Q1.png}
+\end{figure}
+
+\section{}
+Positive \& Negative interval on $\mathbb{R}$. 可能的區間有以下情形：\\
+  \begin{minipage}{\linewidth}
+      \begin{minipage}{0.45\linewidth}
+\raggedright
+\includegraphics[scale=0.5]{Q2.png}
+      \end{minipage}
+      \hspace{0.05\linewidth}
+      \begin{minipage}{0.45\linewidth}
+      \textcircled{1}: 全為"$-$" 或全為"$+$"\\
+      \textcircled{2}: $+-$或$-+$\\
+      \textcircled{3}: $+-+$或$-+-$\\
+      N個點中間有N-1個間隔\\
+      $\therefore$ $m_{\mathcal{H}}(N)=2\times(1+{{N-1}\choose{1}} + {{N-2}\choose{2}})=N^{2}-N+2$
+      \end{minipage}
+  \end{minipage}
+
+\section{}
+\underline{\underline{\textbf{Claim:}}} $d_{vc}(\mathcal{H})=D+1$ \\
+We can observe the Hypothesis Set $\mathcal{H}$ is a D-dim PLA from the slide in lecture 2.\\
+$\therefore$ By the slide in lecture 7, we've shown $d_{vc}(\mathcal{H})=D+1$ during the class.
+
+\section{}
+"Triangle Waves" Hypothesis Set in $\mathbb{R}$:\\
+\begin{center}
+$\mathcal{H}=\left \{   h_{\alpha}  \lvert \quad h_{\alpha}(x) = sgn(\left | (\alpha x) \, mod \, 4-2  \right |-1), \alpha \in \mathbb{R}     \right \}$
+\end{center}
+是個週期為$\frac{4}{\left | \alpha \right |}$ 的三角波函數.\footnote{Triangle Waves Function: http://bit.ly/2nneX45}\\
+$\because$ $\alpha \in \mathbb{R}$ $\therefore$ 週期可以任意小。i.e $x$軸($\mathbb{R}^{1}$)可以被該曲線切成無限多個區域，故$d_{vc}(\mathcal{H})=\infty$
+\section{}
+\underline{\underline{\textbf{Claim:}}} If $\mathcal{H}_{1} \subseteq \mathcal{H}_{2}$, then $d_{vc}(\mathcal{H}_{1}) \leq d_{vc}(\mathcal{H}_{2})$\\
+Suppose $d_{vc}(\mathcal{H}) > d_{vc}(\mathcal{H}_{2})$，則代表 $\mathcal{H}_{1}$ 可以shatter的inputs個數超過 $\mathcal{H}_{2}$所可以shatter的inputs。 i.e 至少存在一個inputs $x$ 使得 $\mathcal{H}_{1}(x) \notin \mathcal{H}_{2}$, contradiction.($\because$ $\mathcal{H}_{1} \subseteq \mathcal{H}_{2}$, $\therefore$ $\mathcal{H}_{1}$所能夠產生的dichotomies，$\mathcal{H}_{2}$也都要能夠產出)\\
+Hence, $d_{vc}(\mathcal{H}) \leq d_{vc}(\mathcal{H}_{2})$
+
+
+\section {}
+By Q.15 on Couresa: \underline{\underline{\textbf{Claim:}}} $\max \left \{   d_{vc} (\mathcal{H}_{k})   \right \}_{k=1}^{K} \leq d_{vc}(\displaystyle \bigcup_{k=1}^{K}\mathcal{H}_{k} ) \leq K-1+ \displaystyle \sum_{k=1}^{K} d_{vc}(\mathcal{H}_{k})$ \\
+\textbf{Left:}
+\begin{minipage}[t]{0.9\linewidth}
+設$\mathcal{H}_{1}, \mathcal{H}_{2},...,\mathcal{H}_{K}$ 所能夠shatter的最大inputs個數為$N$，則$\displaystyle \bigcup_{k=1}^{K} \mathcal{H}_{k}$也至少能夠shatter $N$個inputs:\\
+Suppose not, i.e suppose $d_{vc}(\displaystyle \bigcup_{k=1}^{K} \mathcal{H}_{k})=N-1$，這些$\mathcal{H}_{1}, \mathcal{H}_{2},...,\mathcal{H}_{K}$聯集起來所形成的Hypothesis Set最多只能shatter  $N-1$個inputs，代表這之中所能shatter最多的inputs也只會到$N-1$個, contradiction.\\
+Hence, $\max \left \{   d_{vc} (\mathcal{H}_{k})   \right \}_{k=1}^{K} \leq d_{vc}(\displaystyle \bigcup_{k=1}^{K}\mathcal{H}_{k} )$
+\end{minipage}
+\\
+\textbf{Right:}
+\begin{minipage}[t]{0.9\linewidth}
+假設現在只有 $\mathcal{H}_{1}, \mathcal{H}_{2}$ 這兩種Hypothesis Sets，$\mathcal{H}_{1}$是把平面上所有的點歸類為$+1$; $\mathcal{H}_{2}$是把平面上所有點歸類為$-1$，則我們知道$d_{vc}(\mathcal{H}_{1})=0$ \& $d_{vc}(\mathcal{H}_{2})=0$，$d_{vc}(\mathcal{H}_{1} \cup \mathcal{H}_{2})=1$。\\
+$\therefore$ 從Coursera Q.15的選項中，$d_{vc}(\mathcal{H}_{1} \cup \mathcal{H}_{2})=1$, $\displaystyle \sum_{k=1}^{K} d_{vc}(\mathcal{H}_{k})=0$.\\
+Hence, $d_{vc}(\mathcal{H}_{1} \cup \mathcal{H}_{2})=1 \leq 2-1+0= K-1+\displaystyle \sum_{k=1}^{K} d_{vc}(\mathcal{H}_{k})=0$成立。
+\end{minipage}
+\\
+Therefore, $\max \left \{   d_{vc} (\mathcal{H}_{k})   \right \}_{k=1}^{K} \leq d_{vc}(\displaystyle \bigcup_{k=1}^{K}\mathcal{H}_{k} ) \leq K-1+ \displaystyle \sum_{k=1}^{K} d_{vc}(\mathcal{H}_{k})$.\\
+Now let $\mathcal{H}_{1}$ be positive-ray hypothesis set and $\mathcal{H}_{2}$ be negative-ray hypothesis set. By the slides in lecture 5, we know:
+\begin{minipage}[t]{0.9\linewidth}
+$m_{\mathcal{H}_{1}}(N)=N+1, \quad d_{vc}(\mathcal{H}_{1})=1$ \\
+$m_{\mathcal{H}_{2}}(N)=N+1, \quad d_{vc}(\mathcal{H}_{2})=1$
+\end{minipage}
+\\
+$\therefore$ $\max \left \{   d_{vc} (\mathcal{H}_{k})   \right \}_{k=1}^{2}=1 \leq d_{vc}(\mathcal{H}_{1} \cup \mathcal{H}_{2} ) \leq K-1+ \displaystyle \sum_{k=1}^{2} d_{vc}(\mathcal{H}_{k})=2-1+2=3$\\
+$\Rightarrow$ $1 \leq d_{vc}(\mathcal{H}_{1} \cup \mathcal{H}_{2} ) \leq 3$.\\
+Also, we know the hypothesis set $\mathcal{H}_{1} \cup \mathcal{H}_{2}$ is actually the 1-d perceptron. Hence,          $m_{\mathcal{H}_{1} \cup \mathcal{H}_{2}}(N)=2N$   and $d_{vc}({\mathcal{H}_{1} \cup \mathcal{H}_{2}})=2$ by the slides in lecture 5 and 7, which holds in the above inequality.
+
+\section{}
+$x$ is generated by a uniform distribution in [-1,1].\\
+  \begin{minipage}{\linewidth}
+      \begin{minipage}{0.6\linewidth}
+\raggedright
+     \begin{tabular}{c|cc|c}
+      & $\theta $ &  $s$   & \tabincell{c}{  預測錯誤率$\mu=P(h \neq f)$ \\ $=P(s\cdot sgn(x-\theta) \neq sgn(x))$   } \\ \hline
+\textcircled{1} & > 0 & $+1$ & $P(sgn(x-\theta) \neq sgn(x))=\theta \times \frac{1}{2}$\\ \hline
+\textcircled{2} & > 0 & $-1$ &  \tabincell{c}{ $P(-sgn(x-\theta) \neq sgn(x))$ \\$=[1+(1-\theta)]\times \frac{1}{2}=1-\frac{\theta}{2}$  } \\ \hline
+\textcircled{3} & < 0 & $+1$ & $P(sgn(x-\theta) \neq sgn(x))=-\theta \times \frac{1}{2}$\\ \hline
+\textcircled{4} & < 0 & $-1$ &  \tabincell{c}{  $P(-sgn(x-\theta) \neq sgn(x))$ \\ $=[1+(1+\theta)]\times \frac{1}{2}=1+\frac{\theta}{2}$  } \\
+
+\end{tabular}
+
+      \end{minipage}
+      \hspace{0.05\linewidth}
+      \begin{minipage}{0.4\linewidth}
+ 
+      \includegraphics[scale=0.3]{Q71.png}
+      \includegraphics[scale=0.3]{Q72.png}
+      \end{minipage}
+  \end{minipage}
+綜合\textcircled{1} 、\textcircled{2} 、\textcircled{3} 、\textcircled{4} : 
+$\mu=$  
+$\begin{cases}
+\left | \theta \right | \times \frac{1}{2} \text{\quad if $s=+1$} \\
+1-\frac{\left | \theta \right |}{2} \text{\quad if $s=-1$}
+\end{cases}$
+$\overset{\text{兩點式}}{\Longrightarrow}\mu= \frac{1}{2}+ (\frac{|\theta|-1}{2})\times s$。 \footnote{Let $\mu=a \cdot s + b$. \quad  $|\theta| \times \frac{1}{2}= a+b$ \--- \textcircled{1}, $1-\frac{|\theta|}{2}=-a+b$ \--- \textcircled{2} \qquad By \textcircled{1}, \textcircled{2} $\Rightarrow$ $a=\frac{|\theta|-1}{2}, b=\frac{1}{2}$} 
+\\
+\begin{flalign*}
+\text{By Q.1 on coursera, we know} \; E_{out}(h_{s,\theta})&=\lambda \cdot \mu + (1-\lambda) \cdot (1-\mu), \text{ where}\;  \lambda=1-0.2=0.8\\
+&=0.8 \times \mu + 0.2 \times (1-\mu) \\
+&=0.5 + 0.3 \cdot (|\theta|-1)\cdot s
+\end{flalign*}
+
+\section{}
+  \begin{minipage}{\linewidth}
+      \begin{minipage}{0.5\linewidth}
+\raggedright
+         \includegraphics[scale=0.55]{Q81.png}
+
+      \end{minipage}
+      \hspace{0.05\linewidth}
+      \begin{minipage}{0.4\linewidth}
+        In the left figure, we can observe that the value of $E_{in}$ is at least $0.2$, which is exactly the probability of flipping noise. Intuitively, $E_{out}$ is the expectation of $\llbracket g(x) \neq f(x) \rrbracket$ out of sample, now the flipping rate is $20\%$, then the above expectation term will be at least $20\%$.    
+      \end{minipage}
+  \end{minipage}
+ \\ 
+Though we also have noise in sample of $E_{in}$, we can choose $s$ and $\theta$ to let $E_{in}$ become smaller, so $E_{in}$ could be less than $20\%$. However, the flipped $y$  for out-of-sample is followed a distribution(i.e our target funtcion) like Q.1 in coursera, which has a $20\%$ filpped rate the optimal $s$ and $\theta$ that I choose through $E_{in}$, so $E_{out}$ will be at least $20\%$. \\
+\newline
+  \begin{minipage}{\linewidth}
+      \begin{minipage}{0.5\linewidth}
+\raggedright
+         \includegraphics[scale=0.55]{Q82.png}
+
+      \end{minipage}
+      \hspace{0.05\linewidth}
+      \begin{minipage}{0.4\linewidth}
+       Moreover, if we put $E_{in}$ and $E_{out}$ in the same plot, we can observe that when $E_{in}$ is smaller; the variation of $E_{out}$ will also be smaller. This result corresponds to what we expect: we can let $E_{out}$ be small enough as long as we choose optimal $s$ and $\theta$ to minimize $E_{in}$. i.e Learning succeed: $E_{in} \approx E_{out}$ and $E_{in}$, $E_{out}$ are small.
+      \end{minipage}
+  \end{minipage}
+
+
+
+\section{}
+\underline{\textbf{Cover's Function Counting Theorem:}}\\
+Let $\left \{ x^{1}, x^{2},...,x^{p} \right \}$ be vectors in $\mathbb{R}^{N}$, then the number of distinct dichotomies applied to these points that can be realized by a plane through the origin is :\\ 
+\begin{center}
+$C(P,N)=2\times \displaystyle \sum_{k=0}^{N-1} {{P-1}\choose{k}}$
+\end{center}
+在d-維的PLA中，我們會對門檻值$w_{0}$再墊高一個向量$x_{0}=(1,1,1,...,1)$，用來突破分隔線只能通過原點的限制，而廣義上來說就是在$\mathbb{R}^{d+1}$中的向量$\left \{ x_{1}, x_{2},...,x_{N}\right \}$做通過原點的PLA。\\
+$\therefore$ By Cover's theorem, $m_{\mathcal{H}}(N)=C(N, d+1)=2\times \displaystyle \sum_{i=0}^{d+1-1} {{N-1}\choose{i}}=2\times \displaystyle \sum_{i=0}^{d} {{N-1}\choose{i}}$ \\
+\newline
+\textbf{Proof of Cover's theorem:}\footnote{Reference: http://bit.ly/2nnEtGC}\\
+Denote the number of linearly separable partition by $C(P,N)$. We will find the expression for $C(P,N)$ by induction. Image first having $p$ points and then adding one more point. Now, considering the linearly separable partitions of previous $p$ points, there are two possibilities:\\
+Case 1: there is a separating hyperplane for the previous $p$ points passing through the new point, in which case each such linearly separable partition of the previous $p$ points gives rise to two distinct linearly separable partitions as the hyperplane can be shifted infinitesimally to place the new point in either class. \\
+Case 2: there is no separating hyperplane for the previous $p$ points passing through the new point, in which case each such linearly separable partition gives rise to only one linearly separable partition. \\
+The number of linearly separable partition in Case 1 is precisely $C(P,N-1)$, because restricting the separating hyperplane to pass through a fixed point is the same as eliminating one degree of freedom and thus projecting the $p$ points to a $N-1$-dim space. This can be understood if the new point is on the $x$-axis, for example - then the hyperplane has $N-1$ axes left to work with. If the point is not on the $x$-axis, then rotate the axes of space around to get the point on the x axis, and this of course has no effect on the geometry of the problem. \\
+The recursive relation:\\
+$C(P+1,N)=C(P,N)+C(P,N-1)$, where $C(P,N)$ is the number of separable hyperplanes in Case 2, and $C(P,N-1)$
+is the number of separable hyperplanes in Case 1.\\
+\newline
+Iterating the recursion once, we have \\
+$C(P+1,N)=C(P-1,N)+2C(P-1,N-1)+C(P-1,N-2)$\\
+\newline
+Continue to iterate the recursion (twice)\\
+$C(P+1,N)=C(P-2,N)+3C(P-2,N-1)+3C(P-2,N-2)+C(P-2,N-3)$\\
+\newline
+After $P-1$ iterations, we have\\
+$C(P+1,N)={{P}\choose{0}}C(1,N)+ {{P}\choose{1}} C(1, N-1)+...+ {{P}\choose{P}} C(1, N-P)$, where $C(1,k)=2$ for all $k \leq 1$.\\
+\newline
+So, finally we have $C(P+1,N)=2\times \displaystyle \sum_{i=0}^{N-1} {{P}\choose{i}}$, where ${{P}\choose{i}}=0$
+if $i>P$.
+
+\medskip
+
+
+
+\end{document}
