@@ -5,4 +5,4 @@
 * 程式碼實作：`hw2_8.ipynb`
   - 模擬 **one-dimensional decision stump**: 當極小化 $$\E_{in}$$，可以使 $\E_{out} \approximate \E_{in}$，進而使 $\E_{out}$也最小
 
- $$\sum_{i=0}^{n}$  \prod_\epsilon$$
+$$\frac{\sin(x)}{x}$$
